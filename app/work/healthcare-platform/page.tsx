@@ -102,7 +102,7 @@ export default function HealthcarePlatformPage() {
           Some product details have been generalized to respect confidentiality.
         </p>
 
-        <div className="mt-16 overflow-hidden rounded-[2rem] bg-[#dce6df] p-5 sm:p-10 lg:p-14">
+        <div className="mt-16 overflow-hidden rounded-4xl bg-[#dce6df] p-5 sm:p-10 lg:p-14">
           <div className="mx-auto max-w-5xl rounded-3xl border border-black/10 bg-[#f8f8f5] p-4 shadow-2xl sm:p-6">
             <div className="flex items-center justify-between border-b border-black/10 pb-4">
               <div className="flex gap-2">

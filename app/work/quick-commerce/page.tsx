@@ -121,14 +121,14 @@ export default function QuickCommercePage() {
           Some product details have been generalized to respect confidentiality.
         </p>
 
-        <div className="mt-16 overflow-hidden rounded-[2rem] bg-[#eadfce] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+        <div className="mt-16 overflow-hidden rounded-4xl bg-[#eadfce] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
           <div className="grid gap-8 md:grid-cols-3">
             {screens.map((screen) => (
               <div
                 key={screen.label}
-                className="mx-auto w-full max-w-[280px] rounded-[2.5rem] bg-[#111111] p-2 shadow-2xl"
+                className="mx-auto w-full max-w-70 rounded-[2.5rem] bg-[#111111] p-2 shadow-2xl"
               >
-                <div className="min-h-[500px] overflow-hidden rounded-[2rem] bg-[#f8f8f5] p-5">
+                <div className="min-h-125 overflow-hidden rounded-4xl bg-[#f8f8f5] p-5">
                   <div className="mx-auto h-5 w-20 rounded-full bg-black" />
 
                   <p className="mt-8 text-xs uppercase tracking-[0.16em] text-black/40">

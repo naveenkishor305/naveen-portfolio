@@ -118,7 +118,7 @@ export default function CloudNavigationPage() {
           Google.
         </p>
 
-        <div className="mt-16 overflow-hidden rounded-[2rem] bg-[#dce3ec] p-5 sm:p-10 lg:p-14">
+        <div className="mt-16 overflow-hidden rounded-4xl bg-[#dce3ec] p-5 sm:p-10 lg:p-14">
           <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-black/10 bg-[#f8f8f5] shadow-2xl">
             <div className="flex flex-col gap-4 border-b border-black/10 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
               <div className="flex items-center gap-3">
@@ -137,7 +137,7 @@ export default function CloudNavigationPage() {
               </div>
             </div>
 
-            <div className="grid min-h-[500px] lg:grid-cols-[0.28fr_1fr]">
+            <div className="grid min-h-125 lg:grid-cols-[0.28fr_1fr]">
               <aside className="border-b border-black/10 bg-[#edf0f4] p-5 lg:border-b-0 lg:border-r">
                 <p className="text-xs uppercase tracking-[0.16em] text-black/40">
                   Navigation

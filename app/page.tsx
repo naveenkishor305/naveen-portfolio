@@ -313,14 +313,14 @@ export default function Home() {
 
               <div className="mt-10 divide-y divide-black/20 border-y border-black/20">
                 <a
-                  href="mailto:your-email@example.com"
+                  href="mailto:nkishor305@gmail.com"
                   className="group flex items-center justify-between gap-6 py-5"
                 >
                   <span className="text-sm uppercase tracking-[0.14em] text-black/55">
                     Email
                   </span>
                   <span className="text-right font-medium">
-                    your-email@example.com{" "}
+                    nkishor305@gmail.com{" "}
                     <span className="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
                       ↗
                     </span>
@@ -328,7 +328,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/in/your-profile"
+                  href="https://www.linkedin.com/in/naveen-kishor-316928397/"
                   target="_blank"
                   rel="noreferrer"
                   className="group flex items-center justify-between gap-6 py-5"
@@ -362,7 +362,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="https://github.com/your-username"
+                  href="https://github.com/naveenkishor305"
                   target="_blank"
                   rel="noreferrer"
                   className="group flex items-center justify-between gap-6 py-5"

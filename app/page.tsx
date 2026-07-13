@@ -1,3 +1,4 @@
+import Link from "next/link";
 const navigation = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
@@ -7,6 +8,7 @@ const navigation = [
 const projects = [
   {
     number: "01",
+    href: "/work/healthcare-platform",
     type: "Enterprise SaaS",
     title: "Healthcare operations, made clearer.",
     description:
@@ -17,6 +19,7 @@ const projects = [
   },
   {
     number: "02",
+    href: "/work/quick-commerce",
     type: "0–1 Mobile Product",
     title: "Quick commerce for everyday needs.",
     description:
@@ -27,6 +30,7 @@ const projects = [
   },
   {
     number: "03",
+    href: "/work/cloud-navigation",
     type: "Concept Project",
     title: "Finding the right service in Google Cloud.",
     description:
@@ -141,15 +145,26 @@ export default function Home() {
                     </p>
                   </div>
 
-                  <div className="mt-10 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-black/15 px-3 py-1.5 text-xs"
+                  <div className="mt-10">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-black/15 px-3 py-1.5 text-xs"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {project.href && (
+                      <Link
+                        href={project.href}
+                        className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/20 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
                       >
-                        {tag}
-                      </span>
-                    ))}
+                        View case study <span aria-hidden="true">↗</span>
+                      </Link>
+                    )}
                   </div>
                 </div>
 

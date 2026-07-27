@@ -1,45 +1,11 @@
-import Link from "next/link";
+﻿import Link from "next/link";
+import { projects } from "@/data/projects";
 const navigation = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
-const projects = [
-  {
-    number: "01",
-    href: "/work/healthcare-platform",
-    type: "Enterprise SaaS",
-    title: "Healthcare operations, made clearer.",
-    description:
-      "Designing a multi-role CRM and ERP experience for complex care and business workflows.",
-    tags: ["Product discovery", "Information architecture", "UX/UI design"],
-    background: "#dce6df",
-    accent: "#2f6b55",
-  },
-  {
-    number: "02",
-    href: "/work/quick-commerce",
-    type: "0–1 Mobile Product",
-    title: "Quick commerce for everyday needs.",
-    description:
-      "Creating a mobile commerce experience shaped around local shopping needs in Ghana.",
-    tags: ["User flows", "Mobile design", "Prototyping"],
-    background: "#eadfce",
-    accent: "#a4532f",
-  },
-  {
-    number: "03",
-    href: "/work/cloud-navigation",
-    type: "Concept Project",
-    title: "Finding the right service in Google Cloud.",
-    description:
-      "A conceptual navigation redesign for moving through a dense cloud ecosystem with less friction.",
-    tags: ["Cloud navigation", "Systems thinking", "Interaction design"],
-    background: "#dce3ec",
-    accent: "#3d5f8d",
-  },
-];
 
 export default function Home() {
   return (
@@ -89,7 +55,7 @@ export default function Home() {
               href="#work"
               className="rounded-full bg-[#111111] px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
             >
-              View selected work <span aria-hidden="true">↘</span>
+              View selected work <span aria-hidden="true">â†˜</span>
             </a>
 
             <a
@@ -117,7 +83,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <p className="hidden text-sm text-white/50 sm:block">01—03</p>
+            <p className="hidden text-sm text-white/50 sm:block">01â€”03</p>
           </div>
 
           <div className="mt-10 space-y-6">
@@ -162,7 +128,7 @@ export default function Home() {
                         href={project.href}
                         className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/20 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
                       >
-                        View case study <span aria-hidden="true">↗</span>
+                        View case study <span aria-hidden="true">â†—</span>
                       </Link>
                     )}
                   </div>
@@ -322,7 +288,7 @@ export default function Home() {
                   <span className="text-right font-medium">
                     nkishor305@gmail.com{" "}
                     <span className="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
-                      ↗
+                      â†—
                     </span>
                   </span>
                 </a>
@@ -339,7 +305,7 @@ export default function Home() {
                   <span className="font-medium">
                     Connect{" "}
                     <span className="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
-                      ↗
+                      â†—
                     </span>
                   </span>
                 </a>
@@ -351,12 +317,12 @@ export default function Home() {
                   className="group flex items-center justify-between gap-6 py-5"
                 >
                   <span className="text-sm uppercase tracking-[0.14em] text-black/55">
-                    Résumé
+                    RÃ©sumÃ©
                   </span>
                   <span className="font-medium">
                     View PDF{" "}
                     <span className="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
-                      ↗
+                      â†—
                     </span>
                   </span>
                 </a>
@@ -373,7 +339,7 @@ export default function Home() {
                   <span className="font-medium">
                     View profile{" "}
                     <span className="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
-                      ↗
+                      â†—
                     </span>
                   </span>
                 </a>
@@ -382,10 +348,10 @@ export default function Home() {
           </div>
 
           <footer className="mt-24 flex flex-col gap-4 border-t border-black/20 pt-6 text-sm text-black/60 sm:flex-row sm:items-center sm:justify-between">
-            <p>© 2026 Naveen Kishore. Designed and built with care.</p>
+            <p>Â© 2026 Naveen Kishore. Designed and built with care.</p>
 
             <a href="#" className="transition-colors hover:text-black">
-              Back to top ↑
+              Back to top â†‘
             </a>
           </footer>
         </div>
@@ -393,3 +359,4 @@ export default function Home() {
     </main>
   );
 }
+

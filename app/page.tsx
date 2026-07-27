@@ -1,5 +1,7 @@
 ﻿import Link from "next/link";
 import { projects } from "@/data/projects";
+import Hero from "@/components/home/hero";
+import SelectedWork from "@/components/home/selected-work";
 const navigation = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
@@ -34,156 +36,8 @@ export default function Home() {
           </ul>
         </nav>
       </header>
-
-      <section className="mx-auto flex min-h-[calc(100vh-84px)] w-full max-w-6xl items-center px-6 pb-16 sm:px-8 lg:px-10">
-        <div className="w-full">
-          <p className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-neutral-500">
-            Product Designer
-          </p>
-
-          <h1 className="max-w-5xl text-5xl font-semibold leading-[0.94] tracking-tight sm:text-7xl lg:text-8xl">
-            I simplify complex software.
-          </h1>
-
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-600 sm:text-xl">
-            Engineering-trained product designer turning complex enterprise
-            systems into clear, scalable experiences.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#work"
-              className="rounded-full bg-[#111111] px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
-            >
-              View selected work <span aria-hidden="true">â†˜</span>
-            </a>
-
-            <a
-              href="#about"
-              className="rounded-full border border-neutral-300 px-6 py-3 text-sm font-medium transition-colors hover:border-neutral-900"
-            >
-              About me
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="work"
-        className="scroll-mt-0 bg-[#111111] px-6 py-24 text-white sm:px-8 lg:px-10 lg:py-32"
-      >
-        <div className="mx-auto w-full max-w-6xl">
-          <div className="flex items-end justify-between border-b border-white/20 pb-6">
-            <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-white/50">
-                Selected work
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
-                Projects that show how I think.
-              </h2>
-            </div>
-
-            <p className="hidden text-sm text-white/50 sm:block">01â€”03</p>
-          </div>
-
-          <div className="mt-10 space-y-6">
-            {projects.map((project) => (
-              <article
-                key={project.number}
-                className="group grid overflow-hidden rounded-4xl text-[#111111] lg:grid-cols-[0.9fr_1.1fr]"
-                style={{ backgroundColor: project.background }}
-              >
-                <div className="flex flex-col justify-between p-7 sm:p-10 lg:p-12">
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium">{project.number}</p>
-                      <p className="text-xs uppercase tracking-[0.16em] text-black/50">
-                        {project.type}
-                      </p>
-                    </div>
-
-                    <h3 className="mt-16 max-w-lg text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                      {project.title}
-                    </h3>
-
-                    <p className="mt-5 max-w-md leading-7 text-black/60">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-10">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-black/15 px-3 py-1.5 text-xs"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {project.href && (
-                      <Link
-                        href={project.href}
-                        className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/20 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
-                      >
-                        View case study <span aria-hidden="true">â†—</span>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-
-                <div className="relative flex min-h-85 items-center justify-center overflow-hidden p-7 sm:min-h-107.5 sm:p-12">
-                  <span className="absolute -right-4 -top-12 text-[12rem] font-semibold leading-none text-black/5 sm:text-[18rem]">
-                    {project.number}
-                  </span>
-
-                  <div className="relative w-full max-w-xl rounded-3xl border border-black/10 bg-[#f8f8f5]/90 p-4 shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
-                    <div className="flex items-center justify-between border-b border-black/10 pb-3">
-                      <div className="flex gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-black/20" />
-                        <span className="h-2 w-2 rounded-full bg-black/20" />
-                        <span className="h-2 w-2 rounded-full bg-black/20" />
-                      </div>
-
-                      <span className="text-[10px] uppercase tracking-[0.16em] text-black/40">
-                        Product interface
-                      </span>
-                    </div>
-
-                    <div className="mt-4 grid grid-cols-[0.35fr_1fr] gap-3">
-                      <div className="rounded-2xl bg-black/5 p-3">
-                        <div
-                          className="h-7 w-7 rounded-lg"
-                          style={{ backgroundColor: project.accent }}
-                        />
-                        <div className="mt-6 space-y-2">
-                          <div className="h-2 rounded-full bg-black/10" />
-                          <div className="h-2 w-4/5 rounded-full bg-black/10" />
-                          <div className="h-2 w-3/5 rounded-full bg-black/10" />
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <div
-                          className="h-16 rounded-2xl"
-                          style={{ backgroundColor: project.accent }}
-                        />
-                        <div className="grid grid-cols-2 gap-3">
-                          <div className="h-24 rounded-2xl bg-black/5" />
-                          <div className="h-24 rounded-2xl bg-black/5" />
-                        </div>
-                        <div className="h-12 rounded-2xl bg-black/5" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Hero />
+      <SelectedWork projects={projects} />
       <section
         id="about"
         className="scroll-mt-8 px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
@@ -359,4 +213,6 @@ export default function Home() {
     </main>
   );
 }
+
+
 

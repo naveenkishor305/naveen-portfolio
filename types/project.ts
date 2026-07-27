@@ -7,4 +7,8 @@
   tags: readonly string[];
   background: `#${string}`;
   accent: `#${string}`;
+  year: string;
+  status: string;
+  role: string;
+  highlight: string;
 };

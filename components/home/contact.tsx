@@ -1,4 +1,6 @@
-﻿const links = [
+﻿import Reveal from "@/components/motion/reveal";
+
+const links = [
   {
     label: "Email",
     value: "nkishor305@gmail.com",
@@ -33,7 +35,7 @@ export default function Contact() {
         </p>
 
         <div className="mt-7 grid gap-14 border-t border-black/20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
-          <div>
+          <Reveal>
             <h2 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] sm:text-6xl lg:text-7xl">
               Looking for a designer who can make complexity feel clear?
             </h2>
@@ -56,9 +58,9 @@ export default function Contact() {
                 ↗
               </span>
             </a>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={0.1}>
             <p className="text-xs uppercase tracking-[0.16em] text-black/50">
               Contact and profiles
             </p>
@@ -109,7 +111,7 @@ export default function Contact() {
                 product problems.
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         <footer className="mt-24 flex flex-col gap-4 border-t border-black/20 pt-6 text-sm text-black/55 sm:flex-row sm:items-center sm:justify-between">

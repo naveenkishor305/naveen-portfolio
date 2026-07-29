@@ -4,23 +4,23 @@ export const projects = [
   {
     number: "01",
     href: "/work/healthcare-platform",
-    type: "Healthcare product intelligence",
-    title: "Mapping complex healthcare products.",
+    type: "Enterprise SaaS · Healthcare",
+    title: "Designing a unified operating system for hospitals.",
     description:
-      "An interactive information architecture explorer for understanding how healthcare platforms organise products, modules, workflows and screens.",
+      "A modular, cloud-native Hospital Operating Platform unifying clinical, operational, financial and administrative workflows for the Indian healthcare market.",
     tags: [
-      "Competitive analysis",
-      "Information architecture",
+      "Discovery research",
       "Systems design",
-      "Interactive prototyping",
+      "Competitive analysis",
+      "Product strategy",
     ],
     background: "#dce6df",
     accent: "#2f6b55",
     year: "2026",
-    status: "Ongoing",
-    role: "Product design · Research · Front-end prototype",
+    status: "Phase 1 of 18",
+    role: "Product design · Research · Product strategy",
     highlight:
-      "Company → product → module → workflow → screen hierarchy",
+      "11 operational domains, 42 departments, 19 vendors researched",
   },
   {
     number: "02",

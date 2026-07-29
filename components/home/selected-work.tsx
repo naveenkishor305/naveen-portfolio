@@ -21,39 +21,39 @@ function HealthcarePreview({ accent }: { accent: string }) {
         </div>
 
         <span className="text-[10px] uppercase tracking-[0.16em] text-black/40">
-          Healthcare IA Explorer
+          Hospital OS
         </span>
       </div>
 
       <div className="mt-5 flex items-center justify-between">
         <div>
           <p className="text-[10px] uppercase tracking-[0.16em] text-black/40">
-            Selected company
+            Selected domain
           </p>
-          <p className="mt-1 text-sm font-semibold">Epic Systems</p>
+          <p className="mt-1 text-sm font-semibold">Patient Access</p>
         </div>
 
         <div
           className="rounded-full px-3 py-1.5 text-[10px] font-medium text-white"
           style={{ backgroundColor: accent }}
         >
-          Interactive map
+          11 domains
         </div>
       </div>
 
       <div className="mt-7 grid grid-cols-3 items-center gap-3 text-center">
         <div className="rounded-2xl border border-black/10 bg-white p-4">
           <span className="text-[10px] uppercase tracking-[0.14em] text-black/40">
-            Company
+            Domain
           </span>
-          <p className="mt-2 text-xs font-semibold">Epic</p>
+          <p className="mt-2 text-xs font-semibold">Front-of-House</p>
         </div>
 
         <div className="rounded-2xl border border-black/10 bg-white p-4">
           <span className="text-[10px] uppercase tracking-[0.14em] text-black/40">
-            Product
+            Department
           </span>
-          <p className="mt-2 text-xs font-semibold">Hyperspace</p>
+          <p className="mt-2 text-xs font-semibold">Registration</p>
         </div>
 
         <div
@@ -61,9 +61,9 @@ function HealthcarePreview({ accent }: { accent: string }) {
           style={{ backgroundColor: accent }}
         >
           <span className="text-[10px] uppercase tracking-[0.14em] text-white/60">
-            Module
+            Actors
           </span>
-          <p className="mt-2 text-xs font-semibold">Clinical</p>
+          <p className="mt-2 text-xs font-semibold">Reg. Clerks</p>
         </div>
       </div>
 
@@ -75,8 +75,8 @@ function HealthcarePreview({ accent }: { accent: string }) {
 
       <div className="mt-3 rounded-2xl border border-dashed border-black/15 p-4">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium">Workflow hierarchy</span>
-          <span className="font-mono text-[10px] text-black/40">05 levels</span>
+          <span className="text-xs font-medium">Departments mapped</span>
+          <span className="font-mono text-[10px] text-black/40">42 total</span>
         </div>
 
         <div className="mt-3 flex gap-2">

@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CaseStudyHeader from "@/components/case-study/case-study-header";
+import Reveal from "@/components/motion/reveal";
+
+const sections = [
+  { label: "Context", href: "#context" },
+  { label: "Journey", href: "#journey" },
+  { label: "Principles", href: "#principles" },
+];
 
 export const metadata: Metadata = {
   title: "Quick Commerce — Naveen Kishore",
@@ -52,132 +60,147 @@ const screens = [
   },
 ];
 
+const principles = [
+  {
+    title: "Make availability visible",
+    text: "Set clear expectations before shoppers invest time building an order.",
+  },
+  {
+    title: "Reduce checkout uncertainty",
+    text: "Keep costs, delivery details and required decisions visible throughout checkout.",
+  },
+  {
+    title: "Communicate progress",
+    text: "Use understandable delivery states so customers always know what happens next.",
+  },
+];
+
 export default function QuickCommercePage() {
   return (
     <main className="min-h-screen bg-[#f4f3ee] text-[#111111]">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6 sm:px-8 lg:px-10">
-        <Link
-          href="/"
-          className="text-sm font-semibold tracking-tight"
-          aria-label="Naveen Kishore home"
-        >
-          NK.
-        </Link>
+      <CaseStudyHeader sections={sections} />
 
-        <Link
-          href="/#work"
-          className="text-sm text-neutral-600 transition-colors hover:text-black"
-        >
-          ← All work
-        </Link>
-      </header>
+      <section
+        id="context"
+        className="scroll-mt-24 mx-auto w-full max-w-6xl px-6 pb-24 pt-16 sm:px-8 lg:px-10 lg:pb-32 lg:pt-24"
+      >
+        <Reveal>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-neutral-500">
+            Quick Commerce · 0–1 Mobile Product
+          </p>
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-24 pt-16 sm:px-8 lg:px-10 lg:pb-32 lg:pt-24">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-neutral-500">
-          Quick Commerce · 0–1 Mobile Product
-        </p>
+          <h1 className="mt-7 max-w-5xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
+            Designing quick commerce around everyday decisions.
+          </h1>
 
-        <h1 className="mt-7 max-w-5xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
-          Designing quick commerce around everyday decisions.
-        </h1>
+          <p className="mt-8 max-w-3xl text-xl leading-9 text-neutral-600 sm:text-2xl">
+            A mobile shopping experience designed to make product discovery,
+            ordering and delivery tracking feel straightforward in a Ghanaian
+            market context.
+          </p>
 
-        <p className="mt-8 max-w-3xl text-xl leading-9 text-neutral-600 sm:text-2xl">
-          A mobile shopping experience designed to make product discovery,
-          ordering and delivery tracking feel straightforward in a Ghanaian
-          market context.
-        </p>
+          <dl className="mt-14 grid border-y border-black/15 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="border-b border-black/15 py-6 sm:border-r sm:px-6 sm:first:pl-0 lg:border-b-0">
+              <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
+                Role
+              </dt>
+              <dd className="mt-2 font-medium">Product Designer</dd>
+            </div>
 
-        <dl className="mt-14 grid border-y border-black/15 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="border-b border-black/15 py-6 sm:border-r sm:px-6 sm:first:pl-0 lg:border-b-0">
-            <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
-              Role
-            </dt>
-            <dd className="mt-2 font-medium">Product Designer</dd>
+            <div className="border-b border-black/15 py-6 sm:px-6 lg:border-b-0 lg:border-r">
+              <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
+                Product
+              </dt>
+              <dd className="mt-2 font-medium">Consumer mobile app</dd>
+            </div>
+
+            <div className="border-b border-black/15 py-6 sm:border-r sm:px-6 lg:border-b-0">
+              <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
+                Contribution
+              </dt>
+              <dd className="mt-2 font-medium">Product flows and UX/UI</dd>
+            </div>
+
+            <div className="py-6 sm:px-6 lg:pr-0">
+              <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
+                Focus
+              </dt>
+              <dd className="mt-2 font-medium">End-to-end ordering journey</dd>
+            </div>
+          </dl>
+
+          <div className="mt-5 flex max-w-4xl items-start gap-3 text-sm leading-6 text-neutral-500">
+            <span
+              aria-hidden="true"
+              className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#a4532f]"
+            />
+            <p>
+              Some product details have been generalised to respect
+              confidentiality from the original engagement.
+            </p>
           </div>
+        </Reveal>
 
-          <div className="border-b border-black/15 py-6 sm:px-6 lg:border-b-0 lg:border-r">
-            <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
-              Product
-            </dt>
-            <dd className="mt-2 font-medium">Consumer mobile app</dd>
-          </div>
+        <Reveal delay={0.1} className="mt-16">
+          <div className="overflow-hidden rounded-4xl bg-[#eadfce] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+            <div className="grid gap-8 md:grid-cols-3">
+              {screens.map((screen, index) => (
+                <Reveal key={screen.label} delay={0.08 * index}>
+                  <div className="mx-auto w-full max-w-70 rounded-[2.5rem] bg-[#111111] p-2 shadow-2xl">
+                    <div className="min-h-125 overflow-hidden rounded-4xl bg-[#f8f8f5] p-5">
+                      <div className="mx-auto h-5 w-20 rounded-full bg-black" />
 
-          <div className="border-b border-black/15 py-6 sm:border-r sm:px-6 lg:border-b-0">
-            <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
-              Contribution
-            </dt>
-            <dd className="mt-2 font-medium">Product flows and UX/UI</dd>
-          </div>
+                      <p className="mt-8 text-xs uppercase tracking-[0.16em] text-black/40">
+                        {screen.label}
+                      </p>
 
-          <div className="py-6 sm:px-6 lg:pr-0">
-            <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
-              Focus
-            </dt>
-            <dd className="mt-2 font-medium">End-to-end ordering journey</dd>
-          </div>
-        </dl>
+                      <h2 className="mt-3 text-2xl font-semibold leading-tight">
+                        {screen.title}
+                      </h2>
 
-        <p className="mt-4 text-sm text-neutral-500">
-          Some product details have been generalized to respect confidentiality.
-        </p>
+                      <div className="mt-6 h-11 rounded-full bg-black/5" />
 
-        <div className="mt-16 overflow-hidden rounded-4xl bg-[#eadfce] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-          <div className="grid gap-8 md:grid-cols-3">
-            {screens.map((screen) => (
-              <div
-                key={screen.label}
-                className="mx-auto w-full max-w-70 rounded-[2.5rem] bg-[#111111] p-2 shadow-2xl"
-              >
-                <div className="min-h-125 overflow-hidden rounded-4xl bg-[#f8f8f5] p-5">
-                  <div className="mx-auto h-5 w-20 rounded-full bg-black" />
-
-                  <p className="mt-8 text-xs uppercase tracking-[0.16em] text-black/40">
-                    {screen.label}
-                  </p>
-
-                  <h2 className="mt-3 text-2xl font-semibold leading-tight">
-                    {screen.title}
-                  </h2>
-
-                  <div className="mt-6 h-11 rounded-full bg-black/5" />
-
-                  <div
-                    className="mt-4 rounded-2xl p-5 text-white"
-                    style={{ backgroundColor: screen.accent }}
-                  >
-                    <div className="h-2.5 w-2/3 rounded-full bg-white/50" />
-                    <div className="mt-3 h-2.5 w-1/2 rounded-full bg-white/30" />
-                    <div className="mt-10 h-8 w-24 rounded-full bg-white/20" />
-                  </div>
-
-                  <div className="mt-4 grid grid-cols-2 gap-3">
-                    {[1, 2, 3, 4].map((item) => (
-                      <div key={item} className="rounded-2xl bg-black/5 p-3">
-                        <div className="aspect-square rounded-xl bg-black/5" />
-                        <div className="mt-3 h-2.5 rounded-full bg-black/15" />
-                        <div className="mt-2 h-2.5 w-1/2 rounded-full bg-black/10" />
+                      <div
+                        className="mt-4 rounded-2xl p-5 text-white"
+                        style={{ backgroundColor: screen.accent }}
+                      >
+                        <div className="h-2.5 w-2/3 rounded-full bg-white/50" />
+                        <div className="mt-3 h-2.5 w-1/2 rounded-full bg-white/30" />
+                        <div className="mt-10 h-8 w-24 rounded-full bg-white/20" />
                       </div>
-                    ))}
-                  </div>
 
-                  <div
-                    className="mt-5 h-12 rounded-full"
-                    style={{ backgroundColor: screen.accent }}
-                  />
-                </div>
-              </div>
-            ))}
+                      <div className="mt-4 grid grid-cols-2 gap-3">
+                        {[1, 2, 3, 4].map((item) => (
+                          <div key={item} className="rounded-2xl bg-black/5 p-3">
+                            <div className="aspect-square rounded-xl bg-black/5" />
+                            <div className="mt-3 h-2.5 rounded-full bg-black/15" />
+                            <div className="mt-2 h-2.5 w-1/2 rounded-full bg-black/10" />
+                          </div>
+                        ))}
+                      </div>
+
+                      <div
+                        className="mt-5 h-12 rounded-full"
+                        style={{ backgroundColor: screen.accent }}
+                      />
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-y border-black/15">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-24 sm:px-8 lg:grid-cols-[0.35fr_1fr] lg:px-10 lg:py-32">
-          <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
-            01 / Context
-          </p>
+          <Reveal>
+            <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
+              01 / Context
+            </p>
+          </Reveal>
 
-          <div>
+          <Reveal delay={0.1}>
             <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
               Speed matters, but confidence matters too.
             </h2>
@@ -193,47 +216,55 @@ export default function QuickCommercePage() {
                 information shoppers need to make confident decisions.
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="bg-[#111111] px-6 py-24 text-white sm:px-8 lg:px-10 lg:py-32">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-            Core design question
-          </p>
+          <Reveal>
+            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+              Core design question
+            </p>
 
-          <p className="mt-8 max-w-5xl text-4xl font-medium leading-tight tracking-tight sm:text-6xl">
-            How might we create a quick ordering experience that feels simple,
-            trustworthy and relevant to its local context?
-          </p>
+            <p className="mt-8 max-w-5xl text-4xl font-medium leading-tight tracking-tight sm:text-6xl">
+              How might we create a quick ordering experience that feels
+              simple, trustworthy and relevant to its local context?
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+      <section
+        id="journey"
+        className="scroll-mt-24 px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
+      >
         <div className="mx-auto w-full max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[0.35fr_1fr]">
-            <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
-              02 / Journey
-            </p>
+            <Reveal>
+              <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
+                02 / Journey
+              </p>
+            </Reveal>
 
             <div>
-              <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-                Designing the complete experience, not isolated screens.
-              </h2>
+              <Reveal delay={0.1}>
+                <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+                  Designing the complete experience, not isolated screens.
+                </h2>
+              </Reveal>
 
               <div className="mt-14 divide-y divide-black/15 border-y border-black/15">
-                {journey.map((step) => (
-                  <article
-                    key={step.number}
-                    className="grid gap-5 py-8 sm:grid-cols-[0.15fr_0.4fr_0.45fr]"
-                  >
-                    <p className="text-sm text-neutral-500">{step.number}</p>
-                    <h3 className="text-xl font-semibold">{step.title}</h3>
-                    <p className="leading-7 text-neutral-600">
-                      {step.description}
-                    </p>
-                  </article>
+                {journey.map((step, index) => (
+                  <Reveal key={step.number} delay={0.06 * index}>
+                    <article className="grid gap-5 py-8 sm:grid-cols-[0.15fr_0.4fr_0.45fr]">
+                      <p className="text-sm text-neutral-500">{step.number}</p>
+                      <h3 className="text-xl font-semibold">{step.title}</h3>
+                      <p className="leading-7 text-neutral-600">
+                        {step.description}
+                      </p>
+                    </article>
+                  </Reveal>
                 ))}
               </div>
             </div>
@@ -241,38 +272,29 @@ export default function QuickCommercePage() {
         </div>
       </section>
 
-      <section className="bg-[#eadfce] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+      <section
+        id="principles"
+        className="scroll-mt-24 bg-[#eadfce] px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
+      >
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-sm uppercase tracking-[0.18em] text-black/50">
-            03 / Design principles
-          </p>
+          <Reveal>
+            <p className="text-sm uppercase tracking-[0.18em] text-black/50">
+              03 / Design principles
+            </p>
 
-          <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-            A simple interface supported by clear product decisions.
-          </h2>
+            <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+              A simple interface supported by clear product decisions.
+            </h2>
+          </Reveal>
 
           <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                title: "Make availability visible",
-                text: "Set clear expectations before shoppers invest time building an order.",
-              },
-              {
-                title: "Reduce checkout uncertainty",
-                text: "Keep costs, delivery details and required decisions visible throughout checkout.",
-              },
-              {
-                title: "Communicate progress",
-                text: "Use understandable delivery states so customers always know what happens next.",
-              },
-            ].map((item) => (
-              <article
-                key={item.title}
-                className="rounded-3xl border border-black/10 bg-white/55 p-7"
-              >
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="mt-4 leading-7 text-black/60">{item.text}</p>
-              </article>
+            {principles.map((item, index) => (
+              <Reveal key={item.title} delay={0.08 * index}>
+                <article className="h-full rounded-3xl border border-black/10 bg-white/55 p-7">
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                  <p className="mt-4 leading-7 text-black/60">{item.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>

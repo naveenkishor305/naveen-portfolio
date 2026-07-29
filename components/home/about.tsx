@@ -1,4 +1,6 @@
-﻿const capabilities = [
+﻿import Reveal from "@/components/motion/reveal";
+
+const capabilities = [
   {
     number: "01",
     title: "Product discovery",
@@ -33,7 +35,7 @@ export default function About() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
-          <div>
+          <Reveal>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-neutral-500">
               About
             </p>
@@ -48,9 +50,9 @@ export default function About() {
                 DESIGN + ENGINEERING
               </span>
             </div>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={0.1}>
             <p className="max-w-2xl text-xl leading-9 text-neutral-700 sm:text-2xl sm:leading-10">
               I&apos;m Naveen Kishore, an engineering-trained product designer
               focused on making complicated digital products easier to
@@ -96,10 +98,13 @@ export default function About() {
                 </article>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mt-20 grid overflow-hidden rounded-[2rem] bg-[#deddd6] sm:grid-cols-3">
+        <Reveal
+          delay={0.15}
+          className="mt-20 grid overflow-hidden rounded-[2rem] bg-[#deddd6] sm:grid-cols-3"
+        >
           <div className="p-7 sm:p-9">
             <p className="text-xs uppercase tracking-[0.16em] text-black/45">
               Strongest at
@@ -126,7 +131,7 @@ export default function About() {
               Product design opportunities with complex, meaningful problems
             </p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

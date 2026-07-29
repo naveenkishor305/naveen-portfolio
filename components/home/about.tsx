@@ -1,4 +1,5 @@
 ﻿import Reveal from "@/components/motion/reveal";
+import GridBackdrop from "@/components/ui/grid-backdrop";
 
 const capabilities = [
   {
@@ -31,13 +32,15 @@ export default function About() {
   return (
     <section
       id="about"
-      className="scroll-mt-20 overflow-hidden px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
+      className="relative scroll-mt-20 overflow-hidden px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
     >
+      <GridBackdrop className="opacity-60" />
+
       <div className="mx-auto w-full max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
           <Reveal>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-neutral-500">
-              About
+              02 / About
             </p>
 
             <h2 className="mt-6 max-w-xl text-4xl font-semibold leading-[1.03] tracking-[-0.045em] sm:text-6xl">
@@ -60,10 +63,11 @@ export default function About() {
             </p>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-neutral-600">
-              I enjoy working on information-heavy products, enterprise
-              software and unfamiliar problem spaces. My process moves from
-              research and system mapping to interaction design, visual
-              refinement and functional prototypes.
+              I enjoy problems most designers avoid — dense, regulated,
+              multi-stakeholder systems where the real work happens before any
+              screen gets designed. For Hospital OS, that meant mapping 11
+              operational domains, 42 departments and 443 real workflows
+              before proposing a single interface.
             </p>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-neutral-600">

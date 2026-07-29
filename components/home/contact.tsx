@@ -31,7 +31,7 @@ export default function Contact() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-black/55">
-          Let&apos;s work together
+          03 / Let&apos;s work together
         </p>
 
         <div className="mt-7 grid gap-14 border-t border-black/20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">

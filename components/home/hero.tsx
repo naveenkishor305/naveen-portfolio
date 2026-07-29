@@ -1,6 +1,8 @@
 ﻿"use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import GridBackdrop from "@/components/ui/grid-backdrop";
+import Crosshair from "@/components/ui/crosshair";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -15,12 +17,12 @@ const process = [
   {
     number: "01",
     title: "Understand the system",
-    description: "Users, workflows, constraints and dependencies.",
+    description: "Domains, workflows, actors and dependencies — before any screen.",
   },
   {
     number: "02",
     title: "Create structure",
-    description: "Clear architecture, priorities and decision paths.",
+    description: "Shared models that hold up across departments and edge cases.",
   },
   {
     number: "03",
@@ -34,6 +36,8 @@ export default function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden px-6 pb-16 pt-10 sm:px-8 lg:px-10 lg:pb-24 lg:pt-14">
+      <GridBackdrop />
+
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-40 top-10 -z-10 h-96 w-96 rounded-full bg-[#c96b48]/10 blur-3xl"
@@ -63,8 +67,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-600 sm:text-xl">
-            Engineering-trained product designer shaping complex systems into
-            clear, scalable and usable product experiences.
+            I map how a business actually runs before I open Figma — then
+            design the interface that fits it.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -126,6 +130,8 @@ export default function Hero() {
             aria-hidden="true"
             className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#c96b48]/30 blur-3xl"
           />
+
+          <Crosshair className="absolute left-4 top-4 h-3 w-3 text-white/20" />
 
           <div className="relative">
             <div className="flex items-center justify-between gap-6">

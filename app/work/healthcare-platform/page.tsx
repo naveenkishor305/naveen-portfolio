@@ -7,6 +7,7 @@ import Reveal from "@/components/motion/reveal";
 const sections = [
   { label: "Context", href: "#context" },
   { label: "System", href: "#model" },
+  { label: "Workflows", href: "#workflows" },
   { label: "Research", href: "#research" },
   { label: "Roadmap", href: "#roadmap" },
 ];
@@ -61,19 +62,63 @@ const ecosystemFacts = [
 
 const domainCallouts = [
   {
-    number: "42",
-    label: "departments",
-    detail: "coordinated across 4 functional blocks: front-of-house, clinical core, ancillary/diagnostic, and back-office.",
-  },
-  {
     number: "11",
     label: "operational domains",
     detail: "from Patient Access through Administration & Compliance — the architectural pillars the platform is organised around.",
   },
   {
+    number: "42",
+    label: "departments",
+    detail: "coordinated across 4 functional blocks: front-of-house, clinical core, ancillary/diagnostic, and back-office.",
+  },
+  {
+    number: "443",
+    label: "workflows mapped",
+    detail: "each one specified down to its trigger, actors and system integrations before any interface was considered.",
+  },
+  {
     number: "19",
     label: "vendors researched",
     detail: "spanning enterprise EHR, India-focused HIS/EMR, and specialised point solutions (billing, patient engagement, RCM).",
+  },
+];
+
+const workflowExamples = [
+  {
+    number: "058",
+    name: "Emergency Triage",
+    domain: "Emergency & Trauma Services",
+    purpose:
+      "Rapidly assesses an arriving patient's condition, assigns an evidence-based urgency category, and routes them to the right treatment area within minutes.",
+    triggers: ["Walk-in patient", "Ambulance arrival", "Mass casualty incident"],
+    actors: "Triage Nurse, Emergency Physician, Trauma Team",
+  },
+  {
+    number: "100",
+    name: "Clinical Decision Support",
+    domain: "Outpatient & Inpatient Care",
+    purpose:
+      "Analyses clinical data in real time and delivers evidence-based, patient-specific guidance to clinicians — while keeping the clinician the final decision-maker.",
+    triggers: ["Medication ordering", "Lab result availability", "Clinical deterioration"],
+    actors: "Physician, Nurse, Pharmacist",
+  },
+  {
+    number: "108",
+    name: "Inpatient Discharge Management",
+    domain: "Inpatient Care & Ward Management",
+    purpose:
+      "Governs the safe transition out of inpatient care — clinical sign-off, medication handover, patient education and encounter closure — so no step gets skipped to save time.",
+    triggers: ["Physician authorises discharge", "Transfer to another facility approved", "Discharge against medical advice"],
+    actors: "Attending Physician, Discharge Nurse, Case Manager, Billing Team",
+  },
+  {
+    number: "224",
+    name: "Denial Management",
+    domain: "Financial Operations & Revenue Cycle",
+    purpose:
+      "Investigates, corrects and appeals insurance claims a payer has denied after adjudication — the workflow that decides whether the hospital actually gets paid for care already delivered.",
+    triggers: ["Medical necessity denial", "Authorization denial", "Coding denial"],
+    actors: "Denial Management Specialist, Medical Coder, Appeals Coordinator",
   },
 ];
 
@@ -238,7 +283,7 @@ export default function HealthcarePlatformPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="mt-16 grid gap-4 sm:grid-cols-3">
+          <Reveal delay={0.1} className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {domainCallouts.map((callout) => (
               <div
                 key={callout.label}
@@ -378,6 +423,78 @@ export default function HealthcarePlatformPage() {
       </section>
 
       <section
+        id="workflows"
+        className="scroll-mt-24 px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
+      >
+        <div className="mx-auto w-full max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[0.3fr_1fr]">
+            <Reveal>
+              <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
+                04 / Workflow depth
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
+                Domains and departments are the map. 443 workflows are the
+                terrain.
+              </h2>
+
+              <p className="mt-8 max-w-3xl text-lg leading-8 text-neutral-600">
+                Every one of the 42 departments was decomposed into its actual
+                workflows — each specified with its trigger, its actors and
+                the systems it has to talk to. Four examples, spanning very
+                different parts of the hospital:
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-14 grid gap-5 sm:grid-cols-2">
+            {workflowExamples.map((workflow, index) => (
+              <Reveal key={workflow.number} delay={0.08 * index}>
+                <article className="h-full rounded-3xl border border-black/10 bg-[#f8f8f5] p-7">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-mono text-xs text-black/40">
+                      Workflow {workflow.number}
+                    </span>
+                    <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] uppercase tracking-[0.1em] text-black/50">
+                      {workflow.domain}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 text-xl font-semibold tracking-tight">
+                    {workflow.name}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-black/60">
+                    {workflow.purpose}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {workflow.triggers.map((trigger) => (
+                      <span
+                        key={trigger}
+                        className="rounded-full bg-[#dce6df] px-3 py-1.5 text-xs font-medium text-[#2f6b55]"
+                      >
+                        {trigger}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="mt-5 text-xs uppercase tracking-[0.14em] text-black/40">
+                    Actors
+                  </p>
+                  <p className="mt-1.5 text-sm text-black/60">
+                    {workflow.actors}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
         id="research"
         className="scroll-mt-24 px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
       >
@@ -385,7 +502,7 @@ export default function HealthcarePlatformPage() {
           <div className="grid gap-10 lg:grid-cols-[0.3fr_1fr]">
             <Reveal>
               <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
-                04 / Competitive research
+                05 / Competitive research
               </p>
             </Reveal>
 
@@ -450,7 +567,7 @@ export default function HealthcarePlatformPage() {
         <div className="mx-auto w-full max-w-6xl">
           <Reveal>
             <p className="text-sm uppercase tracking-[0.18em] text-white/45">
-              05 / Product scope &amp; principles
+              06 / Product scope &amp; principles
             </p>
 
             <h2 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
@@ -500,7 +617,7 @@ export default function HealthcarePlatformPage() {
           <div className="grid gap-10 lg:grid-cols-[0.3fr_1fr]">
             <Reveal>
               <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
-                06 / Where this stands
+                07 / Where this stands
               </p>
             </Reveal>
 

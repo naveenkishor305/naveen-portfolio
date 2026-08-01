@@ -14,13 +14,17 @@ type InstagramItem = {
 type FeedResponse = {
   connected: boolean;
   items: InstagramItem[];
+  total?: number;
 };
 
 const PROFILE_URL = "https://www.instagram.com/naveen._.kishor/";
 const REFRESH_INTERVAL = 15 * 60 * 1000;
+const INITIAL_VISIBLE_ITEMS = 12;
+const LOAD_MORE_ITEMS = 12;
 
 export default function InstagramGallery() {
   const [feed, setFeed] = useState<FeedResponse | null>(null);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_ITEMS);
 
   useEffect(() => {
     let active = true;
@@ -44,6 +48,19 @@ export default function InstagramGallery() {
       window.clearInterval(timer);
     };
   }, []);
+
+  if (feed === null) {
+    return (
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3" aria-label="Loading Instagram gallery">
+        {Array.from({ length: INITIAL_VISIBLE_ITEMS }, (_, index) => (
+          <div
+            key={index}
+            className="aspect-square animate-pulse rounded-xl bg-black/[0.07]"
+          />
+        ))}
+      </div>
+    );
+  }
 
   if (!feed?.connected || feed.items.length === 0) {
     return (
@@ -71,30 +88,59 @@ export default function InstagramGallery() {
     );
   }
 
+  const visibleItems = feed.items.slice(0, visibleCount);
+  const hasMoreItems = visibleCount < feed.items.length;
+
   return (
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
-      {feed.items.map((item) => (
-        <a
-          key={item.id}
-          href={item.permalink}
-          target="_blank"
-          rel="noreferrer"
-          className="group relative aspect-square overflow-hidden rounded-xl bg-neutral-200"
-          aria-label={item.caption ? `View Instagram post: ${item.caption.slice(0, 80)}` : "View Instagram post"}
-        >
-          {/* Instagram CDN URLs are returned at runtime, so this remains a native image. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.mediaUrl}
-            alt={item.caption ? item.caption.slice(0, 120) : "Recent visual journal post"}
-            loading="lazy"
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-          />
-          <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 pb-3 pt-10 text-[0.65rem] uppercase tracking-[0.15em] text-white opacity-0 transition group-hover:opacity-100">
-            {item.mediaType === "CAROUSEL_ALBUM" ? "View carousel" : "View post"}
-          </span>
-        </a>
-      ))}
+    <div>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
+        {visibleItems.map((item) => (
+          <a
+            key={item.id}
+            href={item.permalink}
+            target="_blank"
+            rel="noreferrer"
+            className="group relative aspect-square overflow-hidden rounded-xl bg-neutral-200"
+            aria-label={item.caption ? `View Instagram post: ${item.caption.slice(0, 80)}` : "View Instagram post"}
+          >
+            {/* Instagram CDN URLs are returned at runtime, so this remains a native image. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={item.mediaUrl}
+              alt={item.caption ? item.caption.slice(0, 120) : "Recent visual journal post"}
+              loading="lazy"
+              className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+            />
+            <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 pb-3 pt-10 text-[0.65rem] uppercase tracking-[0.15em] text-white opacity-0 transition group-hover:opacity-100">
+              {item.mediaType === "CAROUSEL_ALBUM" ? "View carousel" : "View post"}
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <div className="mt-8 flex flex-col items-center gap-3 text-center">
+        <p className="text-xs tabular-nums text-neutral-500" aria-live="polite">
+          Showing {visibleItems.length} of {feed.items.length} frames
+        </p>
+        {hasMoreItems ? (
+          <button
+            type="button"
+            onClick={() => setVisibleCount((count) => Math.min(count + LOAD_MORE_ITEMS, feed.items.length))}
+            className="inline-flex rounded-full border border-black/15 bg-transparent px-6 py-3 text-sm font-medium text-[#171717] transition hover:-translate-y-0.5 hover:border-black/35 hover:bg-white/60"
+          >
+            Load more frames
+          </button>
+        ) : (
+          <a
+            href={PROFILE_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm font-medium underline decoration-black/25 underline-offset-4 transition hover:decoration-black"
+          >
+            View @naveen._.kishor on Instagram
+          </a>
+        )}
+      </div>
     </div>
   );
 }

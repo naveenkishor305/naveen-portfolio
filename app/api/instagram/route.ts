@@ -11,6 +11,16 @@ type InstagramApiItem = {
   timestamp?: string;
 };
 
+type InstagramApiResponse = {
+  data?: InstagramApiItem[];
+  paging?: {
+    next?: string;
+  };
+};
+
+const MEDIA_PER_REQUEST = 100;
+const MAX_API_PAGES = 10;
+
 export async function GET() {
   const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
 
@@ -21,22 +31,32 @@ export async function GET() {
     );
   }
 
-  const endpoint = new URL("https://graph.instagram.com/me/media");
-  endpoint.searchParams.set(
+  const firstEndpoint = new URL("https://graph.instagram.com/me/media");
+  firstEndpoint.searchParams.set(
     "fields",
     "id,caption,media_type,media_url,permalink,timestamp",
   );
-  endpoint.searchParams.set("limit", "24");
-  endpoint.searchParams.set("access_token", accessToken);
+  firstEndpoint.searchParams.set("limit", String(MEDIA_PER_REQUEST));
+  firstEndpoint.searchParams.set("access_token", accessToken);
 
   try {
-    const response = await fetch(endpoint, { next: { revalidate: 900 } });
-    if (!response.ok) {
-      return NextResponse.json({ connected: false, items: [] }, { status: 502 });
+    const media: InstagramApiItem[] = [];
+    let nextEndpoint: string | undefined = firstEndpoint.toString();
+    let requestCount = 0;
+
+    while (nextEndpoint && requestCount < MAX_API_PAGES) {
+      const response = await fetch(nextEndpoint, { next: { revalidate: 900 } });
+      if (!response.ok) {
+        return NextResponse.json({ connected: false, items: [] }, { status: 502 });
+      }
+
+      const payload = (await response.json()) as InstagramApiResponse;
+      media.push(...(payload.data ?? []));
+      nextEndpoint = payload.paging?.next;
+      requestCount += 1;
     }
 
-    const payload = (await response.json()) as { data?: InstagramApiItem[] };
-    const items = (payload.data ?? [])
+    const items = media
       .filter(
         (item) =>
           (item.media_type === "IMAGE" || item.media_type === "CAROUSEL_ALBUM") &&
@@ -44,7 +64,6 @@ export async function GET() {
           item.media_url &&
           item.permalink,
       )
-      .slice(0, 12)
       .map((item) => ({
         id: item.id as string,
         caption: item.caption ?? "",
@@ -55,7 +74,7 @@ export async function GET() {
       }));
 
     return NextResponse.json(
-      { connected: true, items },
+      { connected: true, items, total: items.length },
       { headers: { "Cache-Control": "public, s-maxage=900, stale-while-revalidate=3600" } },
     );
   } catch {

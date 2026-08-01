@@ -24,6 +24,27 @@ export const projects = [
   },
   {
     number: "02",
+    href: "/work/spine-design-system",
+    type: "Design system · Clinical operations",
+    title: "Building Spine for complex hospital software.",
+    description:
+      "A production-ready design system that turns safety, patient context, accessibility, permissions and operational workflows into reusable interface standards.",
+    tags: [
+      "Design systems",
+      "Clinical UX",
+      "Accessibility",
+      "Front-end documentation",
+    ],
+    background: "#dcebea",
+    accent: "#176e6a",
+    year: "2026",
+    status: "Live",
+    role: "Product design · Systems design · Front-end",
+    highlight:
+      "14 documentation chapters, 6 reproducible renders and shared governance guidance",
+  },
+  {
+    number: "03",
     href: "/work/quick-commerce",
     type: "0–1 mobile product",
     title: "Quick commerce shaped for Ghana.",
@@ -44,7 +65,7 @@ export const projects = [
       "Local-market shopping flows, fulfilment visibility and checkout trust",
   },
   {
-    number: "03",
+    number: "04",
     href: "/work/cloud-navigation",
     type: "Navigation concept",
     title: "Finding the right Google Cloud service.",

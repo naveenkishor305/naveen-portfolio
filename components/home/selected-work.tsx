@@ -246,12 +246,137 @@ function CloudPreview({ accent }: { accent: string }) {
   );
 }
 
+function SpinePreview({ accent }: { accent: string }) {
+  const navigation = [
+    "Overview",
+    "Foundations",
+    "Components",
+    "Clinical patterns",
+  ];
+
+  return (
+    <div className="w-full max-w-xl overflow-hidden rounded-[1.75rem] border border-black/10 bg-[#f7f9f8] shadow-2xl">
+      <div className="flex items-center justify-between border-b border-black/10 px-5 py-4">
+        <div className="flex items-center gap-2.5">
+          <span
+            className="flex h-7 w-7 items-center justify-center rounded-md text-[10px] font-bold text-white"
+            style={{ backgroundColor: accent }}
+          >
+            S
+          </span>
+
+          <div>
+            <p className="text-xs font-semibold">Spine</p>
+            <p className="text-[8px] uppercase tracking-[0.15em] text-black/35">
+              Design system
+            </p>
+          </div>
+        </div>
+
+        <span className="rounded-full border border-black/10 px-2.5 py-1 text-[9px] text-black/45">
+          v1.0
+        </span>
+      </div>
+
+      <div className="grid min-h-72 grid-cols-[0.38fr_1fr]">
+        <div className="border-r border-black/10 bg-white/60 p-4">
+          <p className="text-[8px] font-semibold uppercase tracking-[0.14em] text-black/35">
+            Documentation
+          </p>
+
+          <div className="mt-3 space-y-1.5">
+            {navigation.map((item, index) => (
+              <div
+                key={item}
+                className="rounded-lg px-2.5 py-2 text-[9px] font-medium"
+                style={{
+                  backgroundColor:
+                    index === 1 ? `${accent}18` : "transparent",
+                  color: index === 1 ? accent : "rgba(0,0,0,0.5)",
+                }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 rounded-xl bg-[#172322] p-3 text-white">
+            <p className="text-[8px] uppercase tracking-[0.12em] text-white/40">
+              Clinical system
+            </p>
+            <p className="mt-1.5 text-[9px] font-medium">
+              Patient context preserved
+            </p>
+          </div>
+        </div>
+
+        <div className="p-5">
+          <p className="text-[8px] text-black/35">
+            Clinical operations / Foundations
+          </p>
+
+          <h4 className="mt-3 text-xl font-semibold tracking-[-0.035em]">
+            Foundations
+          </h4>
+
+          <p className="mt-2 max-w-xs text-[9px] leading-4 text-black/45">
+            Semantic foundations for safe, accessible and consistent hospital
+            workflows.
+          </p>
+
+          <div className="mt-5 grid grid-cols-4 gap-2">
+            {["#176e6a", "#dcebea", "#172322", "#f7f9f8"].map(
+              (color) => (
+                <div key={color}>
+                  <div
+                    className="h-10 rounded-lg border border-black/5"
+                    style={{ backgroundColor: color }}
+                  />
+                  <p className="mt-1 font-mono text-[7px] text-black/35">
+                    {color}
+                  </p>
+                </div>
+              ),
+            )}
+          </div>
+
+          <div className="mt-5 grid grid-cols-2 gap-2.5">
+            <div className="rounded-xl border border-black/10 bg-white p-3">
+              <p className="text-[8px] uppercase tracking-[0.12em] text-black/35">
+                Component
+              </p>
+              <div
+                className="mt-3 h-7 rounded-md"
+                style={{ backgroundColor: accent }}
+              />
+            </div>
+
+            <div className="rounded-xl border border-black/10 bg-white p-3">
+              <p className="text-[8px] uppercase tracking-[0.12em] text-black/35">
+                Safety state
+              </p>
+              <div className="mt-3 flex gap-1.5">
+                <span className="h-7 flex-1 rounded-md bg-[#f0c7bd]" />
+                <span className="h-7 flex-1 rounded-md bg-[#f2ddae]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProjectPreview({ project }: { project: Project }) {
-  if (project.number === "01") {
+  if (project.href === "/work/healthcare-platform") {
     return <HealthcarePreview accent={project.accent} />;
   }
 
-  if (project.number === "02") {
+  if (project.href === "/work/spine-design-system") {
+    return <SpinePreview accent={project.accent} />;
+  }
+
+  if (project.href === "/work/quick-commerce") {
     return <CommercePreview accent={project.accent} />;
   }
 

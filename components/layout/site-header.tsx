@@ -1,4 +1,6 @@
-﻿const navigation = [
+import Image from "next/image";
+
+const navigation = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
@@ -13,12 +15,21 @@ export default function SiteHeader() {
           aria-label="Naveen Kishore — Home"
           className="group flex items-center gap-3"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#111111] text-xs font-semibold text-white transition-transform duration-300 group-hover:rotate-[-6deg]">
-            NK
-          </span>
+          <Image
+            src="/brand/grove-mark.svg"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 transition-transform duration-300 group-hover:-rotate-6"
+          />
 
-          <span className="hidden text-sm font-semibold tracking-tight sm:block">
-            Naveen Kishore
+          <span className="hidden flex-col sm:flex">
+            <span className="text-sm font-semibold leading-none tracking-tight">
+              Naveen Kishore
+            </span>
+            <span className="mt-1.5 text-[0.625rem] font-medium uppercase leading-none tracking-[0.16em] text-neutral-500">
+              Product Designer
+            </span>
           </span>
         </a>
 

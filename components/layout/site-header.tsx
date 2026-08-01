@@ -1,9 +1,10 @@
 import Image from "next/image";
 
 const navigation = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
+  { label: "Journal", href: "/personal" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function SiteHeader() {

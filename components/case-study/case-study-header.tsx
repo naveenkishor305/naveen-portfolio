@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type CaseStudyHeaderProps = {
@@ -8,17 +9,28 @@ export default function CaseStudyHeader({ sections = [] }: CaseStudyHeaderProps)
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-[#f4f3ee]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-[4.75rem] w-full max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-10">
+        {/* Same Grove mark as the site header — a case study is not a different
+            site, and swapping the brand at the door says otherwise. */}
         <Link
           href="/"
           aria-label="Naveen Kishore — Home"
-          className="flex items-center gap-3"
+          className="group flex items-center gap-2.5"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#111111] text-xs font-semibold text-white">
-            NK
-          </span>
+          <Image
+            src="/brand/grove-mark.svg"
+            alt=""
+            width={32}
+            height={32}
+            className="h-8 w-8 shrink-0 transition-transform duration-300 group-hover:-rotate-6"
+          />
 
-          <span className="hidden text-sm font-semibold sm:block">
-            Naveen Kishore
+          <span className="hidden flex-col sm:flex">
+            <span className="text-sm font-semibold leading-none tracking-tight">
+              Naveen Kishore
+            </span>
+            <span className="mt-1 text-[0.5625rem] font-medium uppercase leading-none tracking-[0.14em] text-neutral-500">
+              Product Designer
+            </span>
           </span>
         </Link>
 

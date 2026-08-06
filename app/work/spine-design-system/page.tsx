@@ -1,187 +1,115 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import CaseStudyHeader from "@/components/case-study/case-study-header";
 import Reveal from "@/components/motion/reveal";
+import SpineLivePreview from "@/components/case-study/spine-live-preview";
+import {
+  HandoffDiagram,
+  RoleWorkspaces,
+  SystemStates,
+  AuditTrail,
+  IdentityBar,
+  DocumentationMap,
+  GovernanceFlow,
+} from "@/components/case-study/spine-graphics";
 
 const sections = [
-  { label: "Challenge", href: "#challenge" },
-  { label: "Architecture", href: "#architecture" },
-  { label: "Patterns", href: "#patterns" },
-  { label: "Delivery", href: "#delivery" },
+  { label: "Problem", href: "#problem" },
+  { label: "Identity", href: "#identity" },
+  { label: "Roles", href: "#roles" },
+  { label: "States", href: "#states" },
+  { label: "Audit", href: "#audit" },
+  { label: "Structure", href: "#structure" },
+  { label: "Governance", href: "#governance" },
+  { label: "Live system", href: "#live" },
 ];
 
 export const metadata: Metadata = {
   title: "Spine Design System — Naveen Kishore",
   description:
-    "A product design case study about creating an accessible, workflow-aware design system for complex hospital software.",
+    "A design system case study: making hospital software safe, role-aware and consistent across five teams, one patient journey and every handoff between them.",
 };
 
 const projectDetails = [
+  { label: "Role", value: "Product Designer · Systems Designer" },
+  { label: "Scope", value: "Design system · Documentation · Front-end" },
+  { label: "Status", value: "Live · Version 1.0" },
+  { label: "Built with", value: "Next.js · React · TypeScript · Tailwind" },
+];
+
+const outcomes = [
+  { v: "14", k: "Documentation chapters", d: "Principles through governance and migration" },
+  { v: "5", k: "Role workspaces", d: "Reception, clinical, diagnostics, pharmacy, operations" },
+  { v: "7", k: "System states", d: "Including restricted, offline and partial" },
+  { v: "6", k: "Reproducible renders", d: "Captured from the running app with Playwright" },
+];
+
+const principles = [
   {
-    label: "Role",
-    value: "Product Designer · Systems Designer",
+    title: "The patient is never ambiguous",
+    text: "Identity, allergy and consent sit in a persistent bar that never scrolls away, in every workspace. Wrong-patient error is the failure mode a clinical system exists to prevent, so the answer to “who am I looking at?” cannot be more than zero clicks away.",
   },
   {
-    label: "Scope",
-    value: "Design system · Documentation · Front-end",
+    title: "Density follows role, structure does not",
+    text: "Reception, clinicians, diagnostics, pharmacy and operations see the same underlying object rendered at different depths. Changing the model per role would create five products; changing only the density and permissions keeps one.",
   },
   {
-    label: "Status",
-    value: "Live · Version 1.0",
+    title: "Restricted is not the same as empty",
+    text: "A clinician who sees nothing assumes nothing exists. One who sees a locked record knows to ask. Distinguishing absence from denial is a safety property, and it earns its own state rather than collapsing into a blank panel.",
   },
   {
-    label: "Year",
-    value: "2026",
+    title: "Emergencies are designed for, not designed out",
+    text: "Break-glass access is possible, requires a stated reason, and is visible in the record afterwards. A system that makes urgent access impossible gets worked around with shared logins — which is worse than the thing it was protecting against.",
+  },
+  {
+    title: "Language is part of the interface",
+    text: "Clinical writing is terse for a reason, and terse writing goes wrong in specific ways. Terminology, label structure and multilingual behaviour are documented alongside components, because a correct component with the wrong words is still an unsafe screen.",
+  },
+  {
+    title: "Governance is a design deliverable",
+    text: "Contribution, review, ownership and release are documented as carefully as the components. A system that only says yes becomes a component dump; one that says no without a reason gets routed around. Both end in teams forking it.",
   },
 ];
 
-const proofPoints = [
-  {
-    number: "14",
-    label: "documentation chapters",
-    detail:
-      "From principles and foundations through clinical patterns, privacy, governance and migration.",
-  },
-  {
-    number: "7",
-    label: "architecture layers",
-    detail:
-      "A reusable system connecting visual foundations to organization-level workflows.",
-  },
-  {
-    number: "6",
-    label: "reproducible renders",
-    detail:
-      "Portfolio-ready documentation captures generated from the implemented interface.",
-  },
-  {
-    number: "1",
-    label: "shared navigation state",
-    detail:
-      "Sidebar, breadcrumb, URL hash and captured documentation remain synchronized.",
-  },
-];
+function Eyebrow({ n, children }: { n: string; children: React.ReactNode }) {
+  return (
+    <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#176e6a]">
+      {n} / {children}
+    </p>
+  );
+}
 
-const systemLayers = [
-  {
-    number: "01",
-    title: "Foundations",
-    detail:
-      "Semantic colour, typography, spacing, elevation, motion, iconography and responsive behaviour.",
-  },
-  {
-    number: "02",
-    title: "Core components",
-    detail:
-      "Buttons, inputs, selectors, tables, feedback, overlays and navigation with complete states.",
-  },
-  {
-    number: "03",
-    title: "Operational components",
-    detail:
-      "Patient banners, encounter context, task queues, clinical timelines and permission-aware actions.",
-  },
-  {
-    number: "04",
-    title: "Clinical workflow patterns",
-    detail:
-      "Reusable arrangements for registration, consultation, diagnostics, medication and revenue workflows.",
-  },
-  {
-    number: "05",
-    title: "Role workspaces",
-    detail:
-      "Interfaces shaped around the responsibilities of clinicians, nurses, pharmacists and operational teams.",
-  },
-  {
-    number: "06",
-    title: "Cross-organization workflows",
-    detail:
-      "External referrals, shared records and handoffs that cross facility and organizational boundaries.",
-  },
-  {
-    number: "07",
-    title: "Governance and measurement",
-    detail:
-      "Contribution standards, accessibility review, migration guidance, ownership and release discipline.",
-  },
-];
+function Lead({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="mt-7 max-w-4xl text-4xl font-semibold leading-[1.04] tracking-[-0.035em] sm:text-6xl">
+      {children}
+    </h2>
+  );
+}
 
-const workflowPatterns = [
-  {
-    title: "Patient and encounter context",
-    detail:
-      "Persistent identity and encounter information reduces the risk of acting on the wrong patient or episode of care.",
-    signal: "Safety-critical",
-  },
-  {
-    title: "System states and recovery",
-    detail:
-      "Loading, empty, partial, error and offline states explain what happened and give the user a safe next action.",
-    signal: "Resilient",
-  },
-  {
-    title: "Privacy, access and audit",
-    detail:
-      "Sensitive information, permission boundaries and traceable actions are treated as interface behaviour, not backend details.",
-    signal: "Accountable",
-  },
-  {
-    title: "External referral",
-    detail:
-      "Referral status, receiving organization, record sharing and follow-up remain visible across the handoff.",
-    signal: "Cross-system",
-  },
-];
-
-const deliveryPractices = [
-  {
-    title: "Documentation as a product",
-    detail:
-      "Each chapter explains purpose, anatomy, variants, states, accessibility, content rules and responsive behaviour.",
-  },
-  {
-    title: "Realistic clinical context",
-    detail:
-      "Components are demonstrated inside workflows instead of isolated showcase screens.",
-  },
-  {
-    title: "Reproducible visual evidence",
-    detail:
-      "A scripted browser-capture workflow generates consistent documentation renders for review and release.",
-  },
-  {
-    title: "Migration-ready guidance",
-    detail:
-      "Replacement patterns identify breaking differences, product changes, accessibility effects, ownership and target release.",
-  },
-];
-
-const doneChecks = [
-  "Keyboard behaviour and focus order defined",
-  "Screen-reader semantics validated",
-  "Loading, empty, partial, error and offline states covered",
-  "Privacy and permission effects reviewed",
-  "Translated content considered",
-  "Failure and recovery paths designed",
-  "Shared tokens used consistently",
-  "Production lint and build passed",
-];
+function Caption({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-[#7d8f8e]">
+      {children}
+    </p>
+  );
+}
 
 export default function SpineDesignSystemPage() {
   return (
-    <main className="min-h-screen bg-[#f4f3ee] text-[#111111]">
+    <main className="min-h-screen bg-[#f4f3ee] text-[#12201f]">
       <CaseStudyHeader sections={sections} />
 
-      <section className="px-6 pb-24 pt-16 sm:px-8 lg:px-10 lg:pb-32 lg:pt-24">
+      {/* ─────────────────────────────────────────────── HERO ── */}
+      <section className="px-6 pb-20 pt-16 sm:px-8 lg:px-10 lg:pb-24 lg:pt-24">
         <div className="mx-auto w-full max-w-6xl">
           <Reveal>
             <div className="flex flex-wrap items-center gap-3">
               <span className="rounded-full border border-black/15 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em]">
                 Design system case study
               </span>
-
-              <span className="rounded-full bg-[#dcebea] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#176e6a]">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#dcebea] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#176e6a]">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#176e6a]" />
                 Live · Version 1.0
               </span>
             </div>
@@ -190,15 +118,15 @@ export default function SpineDesignSystemPage() {
               Spine · Clinical operations
             </p>
 
-            <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.93] tracking-[-0.055em] sm:text-7xl lg:text-[6.8rem]">
+            <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.93] tracking-[-0.055em] sm:text-7xl lg:text-[6.5rem]">
               Designing consistency for software where mistakes matter.
             </h1>
 
             <p className="mt-9 max-w-3xl text-xl leading-9 text-neutral-600 sm:text-2xl">
-              Spine translates the demands of hospital operations into a
-              reusable design system—connecting visual foundations,
-              accessibility, patient safety, permissions and clinical
-              workflows in one documented product language.
+              Spine is the role-aware design system for Hospital OS. It turns
+              patient safety, permissions, accessibility and clinical workflow
+              into reusable interface standards — one operating language across
+              five teams and every handoff between them.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">
@@ -206,9 +134,10 @@ export default function SpineDesignSystemPage() {
                 href="https://spine-design-system.vercel.app"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-[#111111] px-6 py-3.5 text-sm font-medium text-white transition-transform hover:-translate-y-1"
+                className="inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3.5 text-sm font-medium text-white transition-transform hover:-translate-y-1"
               >
-                Explore live system ↗
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                Browse the live system ↗
               </a>
 
               <a
@@ -220,8 +149,26 @@ export default function SpineDesignSystemPage() {
                 View GitHub repository ↗
               </a>
             </div>
+          </Reveal>
 
-            <dl className="mt-16 grid border-y border-black/15 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal delay={0.1}>
+            <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-black/10 bg-black/10 lg:grid-cols-4">
+              {outcomes.map((o) => (
+                <div key={o.k} className="bg-[#f5faf9] p-6">
+                  <div className="text-4xl font-semibold tracking-tight text-[#176e6a] [font-variant-numeric:tabular-nums]">
+                    {o.v}
+                  </div>
+                  <div className="mt-2 text-sm font-semibold">{o.k}</div>
+                  <div className="mt-1.5 text-[13px] leading-relaxed text-neutral-500">
+                    {o.d}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.14}>
+            <dl className="mt-14 grid border-y border-black/15 sm:grid-cols-2 lg:grid-cols-4">
               {projectDetails.map((item, index) => (
                 <div
                   key={item.label}
@@ -234,273 +181,318 @@ export default function SpineDesignSystemPage() {
                     index === 1 ? "sm:border-b-0" : "",
                   ].join(" ")}
                 >
-                  <dt className="text-xs uppercase tracking-[0.16em] text-neutral-500">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
                     {item.label}
                   </dt>
-                  <dd className="mt-2 text-sm font-medium sm:text-base">
-                    {item.value}
-                  </dd>
+                  <dd className="mt-3 text-lg leading-7">{item.value}</dd>
                 </div>
               ))}
             </dl>
-
-            <div className="mt-5 flex max-w-4xl items-start gap-3 text-sm leading-6 text-neutral-500">
-              <span
-                aria-hidden="true"
-                className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#176e6a]"
-              />
-              <p>
-                This is a self-initiated design-system project derived from the
-                Hospital OS product exploration. It demonstrates product and
-                systems thinking; it is not presented as a deployed hospital
-                client system.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal
-            delay={0.1}
-            className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {proofPoints.map((item) => (
-              <article
-                key={item.label}
-                className="rounded-3xl border border-black/10 bg-[#dcebea] p-6"
-              >
-                <p className="text-4xl font-semibold tracking-[-0.03em] text-[#176e6a]">
-                  {item.number}
-                </p>
-                <h2 className="mt-2 text-sm font-semibold">{item.label}</h2>
-                <p className="mt-2 text-sm leading-6 text-black/60">
-                  {item.detail}
-                </p>
-              </article>
-            ))}
           </Reveal>
         </div>
       </section>
 
-      <section
-        id="challenge"
-        className="scroll-mt-24 border-y border-black/15 bg-[#eef2f0] px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
-      >
-        <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.3fr_1fr]">
+      {/* ──────────────────────────────────────────── PROBLEM ── */}
+      <section id="problem" className="scroll-mt-24 bg-[#12201f] px-6 py-24 text-[#f5faf9] sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
           <Reveal>
-            <p className="text-sm uppercase tracking-[0.18em] text-black/50">
-              01 / Challenge
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#7fc9c4]">
+              01 / The problem
+            </p>
+            <h2 className="mt-7 max-w-4xl text-4xl font-semibold leading-[1.04] tracking-[-0.035em] sm:text-6xl">
+              Hospital work is rarely a single-screen task.
+            </h2>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/60">
+              One outpatient journey moves through reception, consultation,
+              diagnostics, pharmacy and revenue. Each team has its own software
+              habits, its own vocabulary and its own idea of what &ldquo;done&rdquo;
+              means. Every handoff is a chance to lose context, duplicate work
+              or make an unsafe assumption.
             </p>
           </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="mt-14 rounded-[2rem] bg-[#f5faf9] p-6 sm:p-10">
+              <HandoffDiagram />
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {[
+                ["Context is not portable", "A note written in consultation has to mean the same thing in pharmacy, without the pharmacist reading the whole chart."],
+                ["Roles need different things", "Reception needs breadth and speed. A clinician needs depth. Building for both by building for neither is the usual outcome."],
+                ["Consistency is a safety feature", "When the same action looks different in two workspaces, people slow down or guess. In a hospital, guessing has consequences."],
+              ].map(([t, d]) => (
+                <div key={t} className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-7">
+                  <h3 className="text-lg font-semibold tracking-tight">{t}</h3>
+                  <p className="mt-3 leading-7 text-white/55">{d}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────── IDENTITY ── */}
+      <section id="identity" className="scroll-mt-24 px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <Eyebrow n="02">Patient identity</Eyebrow>
+            <Lead>The one component that appears on every screen.</Lead>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-neutral-600">
+              Wrong-patient error is the failure mode a clinical system exists
+              to prevent. So the answer to &ldquo;who am I looking at, and may I
+              act?&rdquo; is never more than zero clicks away — the identity bar
+              is persistent, unscrollable and identical in all five workspaces.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="mt-12">
+              <IdentityBar />
+            </div>
+            <Caption>
+              The same bar renders in reception, consultation, diagnostics,
+              pharmacy and operations. Only the actions beside it change.
+            </Caption>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────── ROLES ── */}
+      <section id="roles" className="scroll-mt-24 bg-[#dcebea] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <Eyebrow n="03">Role workspaces</Eyebrow>
+            <Lead>Same object. Five densities.</Lead>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-neutral-600">
+              A generic clinical UI serves everybody equally badly. Spine keeps
+              one model and varies three things per role: how much is shown, what
+              can be done, and what is deliberately withheld. Changing the model
+              per role would have produced five products to maintain.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="mt-12">
+              <RoleWorkspaces />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────────────────────────────────────────── STATES ── */}
+      <section id="states" className="scroll-mt-24 px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <Eyebrow n="04">System states</Eyebrow>
+            <Lead>What the screen says when things are not fine.</Lead>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-neutral-600">
+              Most design systems document the happy path thoroughly and the
+              rest in a paragraph. In hospital software the exception states are
+              where harm happens, so each one is a first-class pattern with its
+              own rules about what it must say.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="mt-12">
+              <SystemStates />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────── AUDIT ── */}
+      <section id="audit" className="scroll-mt-24 bg-[#12201f] px-6 py-24 text-[#f5faf9] sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#7fc9c4]">
+              05 / Privacy, access and audit
+            </p>
+            <h2 className="mt-7 max-w-4xl text-4xl font-semibold leading-[1.04] tracking-[-0.035em] sm:text-6xl">
+              Emergencies are designed for, not designed out.
+            </h2>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/60">
+              A permission model that makes urgent access impossible gets worked
+              around with shared logins — which is worse than what it was
+              protecting against. So break-glass access exists, requires a
+              reason, and is visible in the record afterwards.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="mt-14">
+              <AuditTrail />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────── STRUCTURE ── */}
+      <section id="structure" className="scroll-mt-24 px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <Eyebrow n="06">Documentation structure</Eyebrow>
+            <Lead>Fourteen chapters, four jobs.</Lead>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-neutral-600">
+              The chapters are not an alphabetical index. They group by what
+              they are for: the shared vocabulary, the parts that make it a
+              hospital rather than a generic product, the obligations that are
+              not negotiable per screen, and the machinery that keeps the system
+              alive after the person who wrote it moves on.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="mt-12">
+              <DocumentationMap />
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <div className="mt-8 rounded-[2rem] border border-[#c9dcda] bg-[#f5faf9] p-8 sm:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#176e6a]">
+                Documentation that stays true
+              </p>
+              <p className="mt-4 max-w-4xl text-xl leading-9 tracking-tight">
+                The reference images are captured from the running application
+                with Playwright, not exported from Figma. Documentation that
+                drifts from the build is worse than none — teams stop trusting
+                it, then stop reading it.
+              </p>
+              <p className="mt-5 max-w-3xl leading-8 text-neutral-600">
+                One command regenerates every render at a consistent viewport,
+                so the system&rsquo;s own documentation cannot quietly go stale.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────────────────────────────────────── GOVERNANCE ── */}
+      <section id="governance" className="scroll-mt-24 bg-[#dcebea] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <Eyebrow n="07">Governance</Eyebrow>
+            <Lead>How the system survives the people who wrote it.</Lead>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-neutral-600">
+              Most design systems fail for organisational reasons rather than
+              visual ones. Spine documents contribution, review, ownership and
+              release with the same care as the components.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="mt-12">
+              <GovernanceFlow />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────── LIVE ── */}
+      <section
+        id="live"
+        className="scroll-mt-24 bg-[#12201f] px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
+      >
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#7fc9c4]">
+              08 / The system itself
+            </p>
+            <h2 className="mt-7 max-w-4xl text-4xl font-semibold leading-[1.04] tracking-[-0.035em] text-[#f5faf9] sm:text-6xl">
+              Everything above, deployed.
+            </h2>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/60">
+              A design system that only exists as a case study is a proposal. This
+              one is built and running — fourteen chapters, five role workspaces
+              and every state documented against the interface that implements
+              them.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08} className="mt-14">
+            <SpineLivePreview />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────────────────────────────────────── PRINCIPLES ── */}
+      <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <div className="mx-auto w-full max-w-6xl">
+          <Reveal>
+            <Eyebrow n="09">Principles</Eyebrow>
+            <Lead>The decisions that shaped everything else.</Lead>
+          </Reveal>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2">
+            {principles.map((item, index) => (
+              <Reveal key={item.title} delay={0.06 * index}>
+                <article className="h-full rounded-[2rem] border border-[#c9dcda] bg-[#f5faf9] p-7">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7d8f8e]">
+                    Principle {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-5 text-2xl font-semibold tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 leading-7 text-neutral-600">{item.text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
 
           <Reveal delay={0.1}>
-            <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
-              A component library alone cannot make clinical software safe.
-            </h2>
-
-            <div className="mt-10 grid gap-8 text-base leading-8 text-black/60 sm:grid-cols-2 sm:text-lg">
-              <p>
-                Hospital interfaces carry patient identity, encounter state,
-                permissions, urgent results and cross-department handoffs.
-                Consistency must protect meaning—not just visual appearance.
+            <div className="mt-10 rounded-[2rem] border border-[#c9dcda] bg-[#f5faf9] p-8 sm:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#176e6a]">
+                Scope, honestly
               </p>
-
-              <p>
-                The system therefore needed to document workflow context,
-                failure recovery, accessibility, privacy and audit behaviour
-                alongside reusable components.
-              </p>
-            </div>
-
-            <div className="mt-12 rounded-3xl bg-[#111111] p-7 text-white sm:p-10">
-              <p className="text-xs uppercase tracking-[0.16em] text-white/40">
-                Core design question
-              </p>
-
-              <p className="mt-6 max-w-4xl text-3xl font-medium leading-tight tracking-[-0.035em] sm:text-5xl">
-                How might one shared system create consistency without erasing
-                the safety, role and workflow differences across hospital
-                operations?
+              <p className="mt-4 max-w-4xl text-lg leading-8 text-neutral-600">
+                Spine is a portfolio design-system case study and interface
+                prototype built around Hospital OS, a conceptual platform. It is
+                not production medical software and has not been through
+                clinical validation. The demonstration data is fictional. What
+                it is meant to show is how the safety, permission and workflow
+                requirements of a clinical product translate into interface
+                standards a team could actually build against.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section
-        id="architecture"
-        className="scroll-mt-24 bg-[#dcebea] px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
-      >
-        <div className="mx-auto w-full max-w-6xl">
-          <div className="grid gap-10 lg:grid-cols-[0.3fr_1fr]">
-            <Reveal>
-              <p className="text-sm uppercase tracking-[0.18em] text-black/50">
-                02 / Architecture
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
-                Seven layers connect foundations to operational governance.
-              </h2>
-
-              <p className="mt-8 max-w-3xl text-lg leading-8 text-black/60">
-                The architecture expands deliberately from low-level visual
-                decisions to components, clinical patterns, role workspaces
-                and cross-organization workflows.
-              </p>
-            </Reveal>
-          </div>
-
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {systemLayers.map((layer, index) => (
-              <Reveal key={layer.number} delay={index * 0.05}>
-                <article className="h-full rounded-3xl border border-black/10 bg-white/65 p-7">
-                  <p className="font-mono text-xs text-[#176e6a]">
-                    {layer.number}
-                  </p>
-                  <h3 className="mt-4 text-xl font-semibold tracking-tight">
-                    {layer.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-black/60">
-                    {layer.detail}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="patterns"
-        className="scroll-mt-24 px-6 py-24 sm:px-8 lg:px-10 lg:py-32"
-      >
-        <div className="mx-auto w-full max-w-6xl">
-          <div className="grid gap-10 lg:grid-cols-[0.3fr_1fr]">
-            <Reveal>
-              <p className="text-sm uppercase tracking-[0.18em] text-neutral-500">
-                03 / Workflow patterns
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
-                Reuse is valuable only when context survives it.
-              </h2>
-
-              <p className="mt-8 max-w-3xl text-lg leading-8 text-neutral-600">
-                Spine demonstrates recurring clinical and operational
-                problems as complete patterns, including states, permissions,
-                recovery and content guidance.
-              </p>
-            </Reveal>
-          </div>
-
-          <div className="mt-14 grid gap-5 sm:grid-cols-2">
-            {workflowPatterns.map((pattern, index) => (
-              <Reveal key={pattern.title} delay={index * 0.07}>
-                <article className="h-full rounded-3xl border border-black/10 bg-[#f8f8f5] p-7">
-                  <span className="rounded-full bg-[#dcebea] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#176e6a]">
-                    {pattern.signal}
-                  </span>
-
-                  <h3 className="mt-5 text-2xl font-semibold tracking-[-0.025em]">
-                    {pattern.title}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-7 text-black/60">
-                    {pattern.detail}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="delivery"
-        className="scroll-mt-24 bg-[#111111] px-6 py-24 text-white sm:px-8 lg:px-10 lg:py-32"
-      >
-        <div className="mx-auto w-full max-w-6xl">
-          <Reveal>
-            <p className="text-sm uppercase tracking-[0.18em] text-white/45">
-              04 / Delivery and governance
-            </p>
-
-            <h2 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
-              The documentation is implemented, reviewable and migration-ready.
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-px overflow-hidden rounded-[2rem] bg-white/15 sm:grid-cols-2">
-            {deliveryPractices.map((practice, index) => (
-              <Reveal key={practice.title} delay={index * 0.06}>
-                <article className="h-full bg-[#111111] p-7 sm:p-9">
-                  <h3 className="text-lg font-semibold tracking-tight">
-                    {practice.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-white/55">
-                    {practice.detail}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal
-            delay={0.2}
-            className="mt-8 rounded-3xl border border-white/15 p-7 sm:p-10"
-          >
-            <p className="text-xs uppercase tracking-[0.16em] text-white/40">
-              Definition-of-done evidence
-            </p>
-
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {doneChecks.map((check) => (
-                <li
-                  key={check}
-                  className="flex items-start gap-3 rounded-2xl bg-white/[0.06] p-4 text-sm leading-6 text-white/80"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#8fd3d0]"
-                  />
-                  {check}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
+      {/* ─────────────────────────────────────────── FOOTER ── */}
       <section className="bg-[#176e6a] px-6 py-24 text-white sm:px-8 lg:px-10 lg:py-28">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-10 sm:flex-row sm:items-end">
           <div>
-            <p className="text-sm uppercase tracking-[0.18em] text-white/60">
-              Explore the implementation
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-white/65">
+              Continue exploring
             </p>
-
-            <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-6xl">
-              See Spine working as a complete documentation product.
+            <h2 className="mt-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+              The platform Spine was built for.
             </h2>
+            <p className="mt-5 max-w-xl leading-8 text-white/70">
+              Hospital OS — 11 operational domains and 42 departments, mapped
+              from vendor research before a single screen was drawn.
+            </p>
           </div>
 
-          <div className="flex shrink-0 flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/work/healthcare-platform"
+              className="rounded-full bg-white px-6 py-3 text-sm font-medium text-[#12201f] transition-transform hover:-translate-y-1"
+            >
+              Read Hospital OS
+            </Link>
             <a
               href="https://spine-design-system.vercel.app"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#111111] transition-transform hover:-translate-y-1"
+              className="rounded-full bg-[#12201f] px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-1"
             >
-              Open live system ↗
+              Browse Spine ↗
             </a>
-
-            <Link
-              href="/#work"
-              className="rounded-full border border-white/30 px-6 py-3.5 text-sm font-medium transition-colors hover:bg-white hover:text-black"
-            >
-              All work
-            </Link>
           </div>
         </div>
       </section>

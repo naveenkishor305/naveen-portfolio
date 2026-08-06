@@ -1,30 +1,40 @@
 ﻿import Reveal from "@/components/motion/reveal";
 import GridBackdrop from "@/components/ui/grid-backdrop";
 
+/* Each capability names the work that proves it. A claim without a citation is
+   a claim; with one it is a reference. */
 const capabilities = [
   {
     number: "01",
     title: "Product discovery",
     description:
       "Understanding users, business goals, technical constraints and the actual problem before designing screens.",
+    evidence:
+      "Hospital OS — 19 vendors and 42 departments researched before a screen existed. Ntɛm — two starting assumptions killed by the market data.",
   },
   {
     number: "02",
     title: "Information architecture",
     description:
       "Structuring dense products, workflows and content so people can understand where they are and what to do next.",
+    evidence:
+      "Ntɛm — a merchant-partitioned order model that makes failure isolation and per-store tracking structural rather than engineered.",
   },
   {
     number: "03",
     title: "Interaction design",
     description:
       "Turning complex tasks into clear flows, states and interaction patterns that remain usable at scale.",
+    evidence:
+      "Ntɛm — four adaptive routing models resolved into one plain-language question the customer can actually answer.",
   },
   {
     number: "04",
     title: "Functional prototyping",
     description:
       "Using high-fidelity prototypes and front-end implementation to test how product decisions behave in practice.",
+    evidence:
+      "Ntɛm — three React apps sharing one live order object. Building it surfaced a flow bug the diagram had hidden.",
   },
 ];
 
@@ -98,6 +108,10 @@ export default function About() {
 
                   <p className="mt-3 text-sm leading-6 text-neutral-600">
                     {capability.description}
+                  </p>
+
+                  <p className="mt-4 border-l-2 border-black/15 pl-3 text-[13px] leading-5 text-neutral-500">
+                    {capability.evidence}
                   </p>
                 </article>
               ))}

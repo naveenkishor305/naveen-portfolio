@@ -4,6 +4,8 @@ import HealthcareSystemMap from "@/components/case-study/healthcare-system-map";
 import CaseStudyHeader from "@/components/case-study/case-study-header";
 import Reveal from "@/components/motion/reveal";
 
+const NADI_LIVE_URL = "https://hospital-os-mvp.vercel.app/login";
+
 const sections = [
   { label: "Context", href: "#context" },
   { label: "System", href: "#model" },
@@ -681,6 +683,30 @@ export default function HealthcarePlatformPage() {
                 </span>
               ))}
             </div>
+          </Reveal>
+
+          <Reveal delay={0.24} className="mt-6 rounded-3xl border-2 border-[#2f6b55] bg-[#dce6df] p-7 sm:p-10">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-[#2f6b55]" />
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2f6b55]">
+                Ahead of the process — an early prototype
+              </p>
+            </div>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-black/70">
+              The 18-phase process above is still in discovery, but I built
+              Nadi — an authenticated, deployed OPD workspace — to pressure-
+              test whether the Spine design system holds up once it&rsquo;s
+              wired to real routes and real auth, rather than waiting for
+              Phase 15 to find out.
+            </p>
+            <a
+              href={NADI_LIVE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-1"
+            >
+              Sign in to Nadi ↗
+            </a>
           </Reveal>
         </div>
       </section>

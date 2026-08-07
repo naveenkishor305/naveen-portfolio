@@ -57,6 +57,34 @@ export const projects = [
   },
   {
     number: "03",
+    href: "/work/nadi-hospital-os",
+    type: "Full-stack MVP · Clinical operations",
+    title: "Turning the design system into a working hospital app.",
+    description:
+      "Nadi is the interactive OPD workspace built on Spine — patient access, scheduling, clinical consultation, diagnostics, pharmacy and billing wired into one authenticated Next.js and Supabase application. Not a click-through prototype, a product you can sign into.",
+    tags: [
+      "Full-stack product design",
+      "Next.js · Supabase",
+      "Design systems in practice",
+      "Auth & access control",
+    ],
+    background: "#e6e1f2",
+    accent: "#5b3fa6",
+    year: "2026",
+    status: "Live MVP",
+    role: "Product design · Front-end engineering",
+    highlight:
+      "Eight connected workspaces behind real authentication — something a recruiter can sign into and click through, not just scroll past.",
+    metrics: [
+      { value: "8", label: "Connected workspaces" },
+      { value: "1", label: "Governed patient journey" },
+      { value: "Live", label: "Deployed & authenticated" },
+    ],
+    liveUrl: "https://hospital-os-mvp.vercel.app/login",
+    liveLabel: "Sign in to the workspace",
+  },
+  {
+    number: "04",
     href: "/work/quick-commerce",
     type: "0–1 mobile ecosystem · Ghana",
     title: "Quick commerce designed around a Ghanaian evening.",
@@ -85,7 +113,7 @@ export const projects = [
     liveLabel: "Open the prototype",
   },
   {
-    number: "04",
+    number: "05",
     href: "/work/cloud-navigation",
     type: "Navigation concept · Developer tools",
     title: "Finding the right Google Cloud service.",

@@ -395,6 +395,115 @@ function SpinePreview({ accent }: { accent: string }) {
   );
 }
 
+/* Nadi's whole argument is "this actually runs" — a sidebar of real routes,
+   a live status pill and the same patient-identity pattern Spine defines,
+   rendered as the deployed app rather than a documentation page. */
+function NadiPreview({ accent }: { accent: string }) {
+  const navItems = [
+    "OPD overview",
+    "Patient access",
+    "Appointments",
+    "Consultation",
+    "Diagnostics",
+  ];
+
+  return (
+    <div className="w-full max-w-xl overflow-hidden rounded-[1.75rem] border border-black/10 bg-[#150f24] shadow-2xl">
+      {/* browser bar — a deployed app, not a mockup */}
+      <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.04] px-4 py-3">
+        <div className="flex gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+        </div>
+
+        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-black/40 px-3 py-1.5">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
+          <span className="truncate font-mono text-[10px] text-white/45">
+            hospital-os-mvp.vercel.app
+          </span>
+        </div>
+
+        <span className="shrink-0 rounded-full border border-white/15 px-2 py-0.5 text-[9px] text-white/45">
+          Live
+        </span>
+      </div>
+
+      <div className="grid grid-cols-[0.4fr_1fr]">
+        {/* sidebar nav */}
+        <div className="border-r border-white/10 bg-white/[0.02] p-4">
+          <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-white/30">
+            Integrated OPD
+          </p>
+
+          <div className="mt-3 space-y-1">
+            {navItems.map((item, index) => (
+              <div
+                key={item}
+                className="truncate rounded-lg px-2.5 py-2 text-[10.5px] font-medium leading-tight"
+                style={{
+                  backgroundColor: index === 1 ? `${accent}33` : "transparent",
+                  color: index === 1 ? "#e4dcf7" : "rgba(255,255,255,0.55)",
+                }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* patient context + metrics */}
+        <div className="p-4">
+          <div
+            className="rounded-xl border-2 bg-white/[0.06] px-3.5 py-3"
+            style={{ borderColor: accent }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-[14px] font-semibold tracking-tight text-white">
+                Meera Nair
+              </span>
+              <span className="rounded-full bg-[#a83232] px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.08em] text-white">
+                Allergy
+              </span>
+            </div>
+            <p className="mt-1 font-mono text-[10px] text-white/45">
+              42 y · MRN HOS-024718
+            </p>
+          </div>
+
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {[
+              ["38", "Arrivals today"],
+              ["12", "Consultations active"],
+            ].map(([value, label]) => (
+              <div
+                key={label}
+                className="rounded-xl border border-white/10 bg-white/[0.04] p-3"
+              >
+                <p className="text-lg font-semibold tabular-nums text-white">
+                  {value}
+                </p>
+                <p className="mt-1 text-[9px] leading-tight text-white/45">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="mt-2.5 rounded-lg px-2.5 py-2"
+            style={{ backgroundColor: `${accent}26` }}
+          >
+            <p className="text-[9.5px] leading-4" style={{ color: "#e4dcf7" }}>
+              Signed in as staff · encrypted session
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProjectPreview({ project }: { project: Project }) {
   if (project.href === "/work/healthcare-platform") {
     return <HealthcarePreview accent={project.accent} />;
@@ -402,6 +511,10 @@ function ProjectPreview({ project }: { project: Project }) {
 
   if (project.href === "/work/spine-design-system") {
     return <SpinePreview accent={project.accent} />;
+  }
+
+  if (project.href === "/work/nadi-hospital-os") {
+    return <NadiPreview accent={project.accent} />;
   }
 
   if (project.href === "/work/quick-commerce") {

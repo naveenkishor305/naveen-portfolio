@@ -485,6 +485,12 @@ export default function SpineDesignSystemPage() {
             >
               Read Hospital OS
             </Link>
+            <Link
+              href="/work/nadi-hospital-os"
+              className="rounded-full bg-[#5b3fa6] px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-1"
+            >
+              See Spine, deployed as Nadi
+            </Link>
             <a
               href="https://spine-design-system.vercel.app"
               target="_blank"
